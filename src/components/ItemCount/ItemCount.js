@@ -4,14 +4,15 @@ import './ItemCount.css';
 export function ItemCount(props) {
   // Declaración de una variable de estado que llamaremos "count"
   
-  const [stock , setStock ] = useState(0)
+  const [count , setCount ] = useState(props.initial)
+  
  
   
   
   const agregar = () =>{
 
-    if (props.stock >= stock) {
-		setStock(stock + 1)}
+    if (props.stock >= count) {
+		setCount(count + 1)}
 		 else {
 		console.log('no hay mas productos');
 	}
@@ -19,8 +20,8 @@ export function ItemCount(props) {
   }
   
 	const quitar = () =>{
-	if (stock >= props.initial) {
-		setStock(stock - 1) } 
+	if (1  <= count ) {
+		setCount(count - 1) } 
 	else {
 		console.log('quitaste todos los productos');
 	}
@@ -32,11 +33,6 @@ export function ItemCount(props) {
 	
 
 
-  const onAdd = () => {
-
-    console.log(`felicitaciones se agregaron ${stock} productos al carrito`)
-
-  };
 
 
 
@@ -54,9 +50,9 @@ export function ItemCount(props) {
 	  
         Quitar
       </button>
-	  <button  className='item' onClick={onAdd}>Agrear A carrtio</button>
+	  <button  className='item' onClick={()=>props.onAdd(count)}>Agrear A carrtio</button>
 	  
-	  <div className='count'>{stock}</div>
+	  <div className='count'>{count}</div>
 	  
 	 
     </div>
