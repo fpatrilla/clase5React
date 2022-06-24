@@ -1,7 +1,8 @@
-import React from 'react';
+
 import './ItemListContainer.css'
 import { ItemCount } from '../ItemCount/ItemCount';
 import ItemList from '../Item/ItemList';
+import React, { useState, useEffect } from 'react';
 
 
 const onAdd = (n) => {
@@ -14,7 +15,21 @@ const onAdd = (n) => {
 
 
 
+
+
 const ItemListContainer = (props) => {
+	const [user, setUser] = useState([]);
+
+	// console.log('DATA:', user);
+
+	
+	useEffect(() => {
+		
+		fetch('https://jsonplaceholder.typicode.com/users')
+			.then((response) => response.json())
+			.then((json) => setUser(json));
+	}, []);
+
 	
 
 	return (
@@ -25,7 +40,8 @@ const ItemListContainer = (props) => {
 			
 		</div>
 		<ItemCount initial={1}  stock={5} onAdd={onAdd}  />
-		<ItemList/>
+		<ItemList user={user}/>
+		
 		</div>
 		
 	);
